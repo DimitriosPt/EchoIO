@@ -49,4 +49,9 @@
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="SpotifyAPI.Web" Version="6.3.0" />
+      <PackageReference Include="SpotifyAPI.Web.Auth" Version="6.3.0" />
+    </ItemGroup>
+
 </Project>

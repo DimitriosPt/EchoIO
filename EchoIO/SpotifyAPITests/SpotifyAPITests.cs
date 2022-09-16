@@ -1,4 +1,5 @@
 using EchoIO;
+using System.Net;
 
 namespace SpotifyAPITests
 {
@@ -18,5 +19,20 @@ namespace SpotifyAPITests
 			Assert.That(Secrets.ClientSecret, Is.Not.Null);
 			Assert.That(Secrets.ClientID, Is.Not.Null);
 		}
+
+		[Test]
+		public void TestBasicGetRequest()
+		{
+			var id = "4aawyAB9vmqN3uQ7FjRGTy";
+
+            var url = $"https://api.spotify.com/v1/search/";
+
+			var client = new HttpClient();
+			client.BaseAddress = new Uri(url);
+           
+			var response = client.GetAsync(id).Result;
+
+            Console.WriteLine(response);
+        }
 	}
 }
