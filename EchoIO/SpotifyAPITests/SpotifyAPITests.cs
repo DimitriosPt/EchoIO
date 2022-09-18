@@ -32,6 +32,10 @@ namespace SpotifyAPITests
            
 			var response = client.GetAsync(id).Result;
 
+			var albumReq = new SpotifyAPI.Web.AlbumRequest();
+
+			albumReq.BuildQueryParams();
+
             Console.WriteLine(response);
         }
 	}
