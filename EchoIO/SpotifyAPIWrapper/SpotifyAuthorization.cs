@@ -1,4 +1,8 @@
-﻿namespace SpotifyAPIWrapper
+﻿// <copyright file="SpotifyAuthorization.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace SpotifyAPIWrapper
 {
     using SpotifyAPI.Web;
     using System.Net;
@@ -10,9 +14,8 @@
         /// Gets a spotify access token given the stored client secrets.
         /// </summary>
         /// <returns></returns>
-        public async Task <SpotifyClient> GetAccessToken()
+        public async Task<SpotifyClient> GetAccessToken()
         {
-
             var config = SpotifyClientConfig
               .CreateDefault()
               .WithAuthenticator(new ClientCredentialsAuthenticator(Secrets.ClientID, Secrets.ClientSecret));
@@ -23,6 +26,5 @@
 
             return spotify;
         }
-
     }
 }
