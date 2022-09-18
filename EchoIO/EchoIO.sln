@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyAPITests", "SpotifyAPITests\SpotifyAPITests.csproj", "{EAC4A83A-9688-4DDA-82DC-316A7AD08BB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotifyAPITests", "SpotifyAPITests\SpotifyAPITests.csproj", "{EAC4A83A-9688-4DDA-82DC-316A7AD08BB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyAPIWrapper", "SpotifyAPIWrapper\SpotifyAPIWrapper.csproj", "{6BD7F974-292C-4668-84AC-67A695D85980}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{EAC4A83A-9688-4DDA-82DC-316A7AD08BB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAC4A83A-9688-4DDA-82DC-316A7AD08BB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAC4A83A-9688-4DDA-82DC-316A7AD08BB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD7F974-292C-4668-84AC-67A695D85980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD7F974-292C-4668-84AC-67A695D85980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD7F974-292C-4668-84AC-67A695D85980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD7F974-292C-4668-84AC-67A695D85980}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

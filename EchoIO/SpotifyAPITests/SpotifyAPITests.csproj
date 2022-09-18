@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EchoIO\EchoIO.csproj" />
+    <ProjectReference Include="..\SpotifyAPIWrapper\SpotifyAPIWrapper.csproj" />
   </ItemGroup>
 
 </Project>

@@ -38,5 +38,20 @@ namespace SpotifyAPITests
 
             Console.WriteLine(response);
         }
+
+		/// <summary>
+		/// A live tests that retrieves an OAuth token given the local secrets.
+		/// </summary>
+		[Test]
+		public async Task TestGetSpotifyClient()
+		{
+			var authorizer = new SpotifyAPIWrapper.SpotifyAuthenticator();
+			var client = await authorizer.GetAccessToken();
+
+			Assert.That(client, Is.Not.Null);
+
+			var album = await client.Albums.Get("4aawyAB9vmqN3uQ7FjRGTy");
+			Assert.That(album, Is.Not.Null);
+		}
 	}
 }
