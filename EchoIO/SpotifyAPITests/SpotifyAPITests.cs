@@ -6,6 +6,7 @@ namespace SpotifyAPITests
 {
     using System.Net;
     using EchoIO;
+    using static SpotifyAPI.Web.SearchRequest;
 
     public class Tests
     {
@@ -24,6 +25,9 @@ namespace SpotifyAPITests
             Assert.That(Secrets.ClientID, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Tests submitting a get request for album information.
+        /// </summary>
         [Test]
         public void TestBasicGetRequest()
         {
@@ -38,7 +42,7 @@ namespace SpotifyAPITests
 
             var albumReq = new SpotifyAPI.Web.AlbumRequest();
 
-            albumReq.BuildQueryParams();
+            _ = albumReq.BuildQueryParams();
 
             Console.WriteLine(response);
         }
@@ -56,6 +60,26 @@ namespace SpotifyAPITests
 
             var album = await client.Albums.Get("4aawyAB9vmqN3uQ7FjRGTy");
             Assert.That(album, Is.Not.Null);
+            Assert.That(album.Artists.First().Name, Is.EqualTo("Pitbull").IgnoreCase);
+        }
+
+        /// <summary>
+        /// A live tests that uses the search capability of the Spotify API to retrieve artist albums.
+        /// </summary>
+        [Test]
+        public async Task TestSearchArtist()
+        {
+            var authorizer = new SpotifyAPIWrapper.SpotifyAuthenticator();
+            var client = await authorizer.GetAccessToken();
+
+            Types types = Types.Artist;
+
+            string bandName = "Rush";
+
+            var response = await client.Search.Item(new SpotifyAPI.Web.SearchRequest(types, bandName));
+
+            Assert.That(response, Is.Not.Null);
+            Assert.That(bandName, Is.EqualTo(response.Artists?.Items?.First().Name));
         }
     }
 }
