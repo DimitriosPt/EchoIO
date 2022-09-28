@@ -1,15 +1,52 @@
 ﻿@page "/Echo"
-<h3>EchoMain</h3>
-
+@using System.Diagnostics
+<h3>Welcome to Echo.IO!</h3>
+<h2>Find songs based on bpm!</h2>
+<p>Just start tapping and we will search when you're done.</p>
 <p role="status">Click count: @currentCount</p>
+<p role="status">Running BPM: @runningBPM</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p role="status">Elapsed Time: @timer.ElapsedMilliseconds</p>
+<button class="btn btn-primary" @onclick="RegisterTap">Click me</button>
 
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private bool isFirstClick = true;
+
+    private Stopwatch timer = new Stopwatch();
+
+    private double averageMillisecondsBetweenClick = 0;
+
+    private long milliSecondsSinceLastTap = 1;
+
+    private long elapsedMillisecondsAtLastTap = 0;
+
+    private double runningBPM = 0;
+
+    private long runningMillisecondTimeTotalBetweenTaps = 0;
+
+    private void RegisterTap()
     {
+        // Start the running timer when the button is first clicked.
+        if (isFirstClick)
+        {
+            timer.Start();
+            currentCount++;
+            isFirstClick = false;
+            return;
+        }
+
         currentCount++;
+
+        var currentElapsedMilliseconds = timer.ElapsedMilliseconds;
+
+        var timeSinceLastTap = currentElapsedMilliseconds - elapsedMillisecondsAtLastTap;
+
+        runningMillisecondTimeTotalBetweenTaps += timeSinceLastTap;
+
+        elapsedMillisecondsAtLastTap = currentElapsedMilliseconds;
+
+        runningBPM = currentCount / (runningMillisecondTimeTotalBetweenTaps / (float)(1000 * 60));
     }
 }
