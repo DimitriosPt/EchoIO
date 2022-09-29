@@ -43,10 +43,14 @@
 
         var timeSinceLastTap = currentElapsedMilliseconds - elapsedMillisecondsAtLastTap;
 
+        // We don't want to use just the latest tap, we want to adjust against a running average.
+        // People aren't metronomes!
         runningMillisecondTimeTotalBetweenTaps += timeSinceLastTap;
 
         elapsedMillisecondsAtLastTap = currentElapsedMilliseconds;
 
+        // BPM is taps divided by time elapsed. Using only the time between taps as counting towards total time
+        // to avoid bpm continuing to shrink when the user is done tapping.
         runningBPM = currentCount / (runningMillisecondTimeTotalBetweenTaps / (float)(1000 * 60));
     }
 }
