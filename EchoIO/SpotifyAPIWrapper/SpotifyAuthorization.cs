@@ -13,7 +13,7 @@ namespace SpotifyAPIWrapper
         /// <summary>
         /// Gets a spotify access token given the stored client secrets.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A spotify client with authentication completed.</returns>
         public async Task<SpotifyClient> GetAccessToken()
         {
             var config = SpotifyClientConfig
@@ -21,8 +21,6 @@ namespace SpotifyAPIWrapper
               .WithAuthenticator(new ClientCredentialsAuthenticator(Secrets.ClientID, Secrets.ClientSecret));
 
             var spotify = new SpotifyClient(config);
-
-            var album = await spotify.Albums.Get("4aawyAB9vmqN3uQ7FjRGTy");
 
             return spotify;
         }

@@ -66,4 +66,8 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SpotifyAPIWrapper\SpotifyAPIWrapper.csproj" />
+    </ItemGroup>
+
 </Project>

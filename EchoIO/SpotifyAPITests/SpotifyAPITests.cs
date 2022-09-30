@@ -8,7 +8,10 @@ namespace SpotifyAPITests
     using EchoIO;
     using static SpotifyAPI.Web.SearchRequest;
 
-    public class Tests
+    /// <summary>
+    /// More of a playground to try out different api methods and see what the correct way to utilize them is.
+    /// </summary>
+    public class SpotifyAPITests
     {
         [SetUp]
         public void Setup()
@@ -80,6 +83,21 @@ namespace SpotifyAPITests
 
             Assert.That(response, Is.Not.Null);
             Assert.That(bandName, Is.EqualTo(response.Artists?.Items?.First().Name));
+        }
+
+        /// <summary>
+        /// A live test which retrieves the category names used by spotfiy internally.
+        /// </summary>
+        [Test]
+        public async Task TestRetrieveCategories()
+        {
+            var spotifyClient = await new SpotifyAPIWrapper.SpotifyAuthenticator().GetAccessToken();
+
+            var categoryResponse = await spotifyClient.Browse.GetCategories();
+
+            var categoryNames = categoryResponse.Categories.Items.Select(x => x.Name).ToList();
+
+            Assert.That(categoryResponse, Is.Not.Null);
         }
     }
 }
